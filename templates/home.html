@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality Index</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles2.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Air Quality Index Analyzer</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('predict') }}">Predict</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div class="content-left">
+                <img src="{{ url_for('static', filename='AQI.jpg') }}" alt="Air Quality Image" class="aqi-image">
+            </div>
+            <div class="content-right">
+                <h2>Introduction</h2>
+                <h1>What is AQI?</h1>
+                <p>The Air Quality Index (AQI) is a measure used to communicate how polluted the air currently is or how polluted it is forecast to become. The AQI is calculated based on the levels of various pollutants in the air, including particulate matter (PM10 and PM2.5), ground-level ozone (O3), carbon monoxide (CO), sulfur dioxide (SO2), and nitrogen dioxide (NO2).</p>
+                <h3>Why is AQI important?</h3>
+                <p>Monitoring and understanding the AQI is crucial for public health as it provides essential information on the safety and quality of the air we breathe. High levels of air pollution can cause a variety of health problems, particularly for vulnerable groups such as children, the elderly, and those with respiratory or cardiovascular conditions. The AQI helps individuals make informed decisions about outdoor activities and take necessary precautions to protect their health.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

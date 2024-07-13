@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Set height to viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('air.jpeg');
+}
+
+header {
+    background-color: #616161;
+    color: white;
+    padding: 10px 0; /* Reduced padding to decrease height */
+    position: fixed; /* Fixed position */
+    width: 100%; /* Full width */
+    top: 0; /* Stick to the top */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+header h1 {
+    color: white;
+    margin: 0; /* Ensure no extra margin is added */
+    font-size: 24px; /* Adjust font size if needed */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px; /* Reduced padding */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #616161;
+    border-radius: 5px;
+}
+
+.container {
+    max-width: 1200px;
+    padding: 20px;
+    background-color: rgba(80, 75, 77, 0.8); /* Transparent background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 8px;
+    margin-top: 80px; /* Add top margin to avoid header overlap */
+    width: 100%;
+}
+
+.container h1,
+.container h2,
+.container h3 {
+    color: white; /* Set heading color to white for better visibility */
+}
+
+.content {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.content-left {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.content-right {
+    flex: 2;
+}
+
+.content h3 {
+    margin-top: 20px;
+}
+
+.content p {
+    line-height: 1.6;
+}
+
+.aqi-image {
+    width: 100%;
+    max-width: 400px;
+    min-width: 300px; /* Set a minimum width to prevent shrinking */
+    height: 400px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Add top margin to avoid header overlap */
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #388E3C;
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .content {
+        flex-direction: column;
+    }
+    
+    .content-left,
+    .content-right {
+        margin-right: 0;
+        margin-top: 20px;
+    }
+    
+    .aqi-image {
+        margin-top: 20px; /* Adjust top margin for smaller screens */
+    }
+}

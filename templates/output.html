@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AQI Result</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f0f8ff;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: url('{{ url_for('static', filename='air.jpeg') }}');
+        }
+
+        header {
+            background-color: #616161;
+            color: white;
+            padding: 10px 0;
+        }
+
+        header h1 {
+            color: white;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: #616161;
+            border-radius: 5px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(80, 75, 77, 0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .aqi-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        p {
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .right_result {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .right_result div {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .right_result img {
+            width: 100%;
+            max-width: 300px; /* Adjust the width here */
+            height: auto;
+            margin: 10px 0;
+            border-radius: 8px; /* Optional for rounded corners */
+        }
+
+        .good {
+            color: green;
+        }
+
+        .satisfactory {
+            color: yellow;
+        }
+
+        .moderately_polluted {
+            color: orange;
+        }
+
+        .poor {
+            color: red;
+        }
+
+        .very_poor {
+            color: purple;
+        }
+
+        .severe {
+            color: maroon;
+        }
+
+        .detail {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .detail p {
+            margin: 5px 0;
+            width: 80%;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Air Quality Index Analyzer</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/predict">Predict</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h1> {{ y }}</h1>
+            <div class="right_result">
+                {% if z == 'GOOD' %}
+                    <div class="good">
+                        <h2>GOOD</h2>
+                        <img src="{{ url_for('static', filename='goog.jpeg') }}" alt="Good">
+                        <div class="detail">
+                            <p>Symptoms: None. You can breathe easily and feel refreshed.</p>
+                            <p>Diseases: None. There are no health risks associated with this air quality level.</p>
+                            <p>Precautions: Enjoy your usual outdoor activities. It's a great day to spend time outside.</p>
+                            <p>Additional Information: The air quality is considered to be ideal for most individuals. Activities such as exercising, hiking, and outdoor sports are safe and highly recommended. This is a great time to open windows and let fresh air circulate indoors.</p>
+                        </div>
+                    </div>
+                {% elif z == 'SATISFACTORY' %}
+                    <div class="satisfactory">
+                        <h2>SATISFACTORY</h2>
+                        <img src="{{ url_for('static', filename='statisfactory.jpg') }}" alt="Satisfactory">
+                        <div class="detail">
+                            <p>Symptoms: Minor breathing discomfort to sensitive people.</p>
+                            <p>Diseases: None</p>
+                            <p>Precautions: Sensitive people should consider limiting prolonged outdoor exertion.</p>
+                            <p>Additional Information: Air quality is generally acceptable for the majority of the population.</p>
+                        </div>
+                    </div>
+                {% elif z == 'MODERATELY POLLUTED' %}
+                    <div class="moderately_polluted">
+                        <h2>MODERATELY POLLUTED</h2>
+                        <img src="{{ url_for('static', filename='AQI-meter.jpng.png') }}" alt="Moderately Polluted">
+                        <div class="detail">
+                            <p>Symptoms: Breathing discomfort to the people with lung disease, such as asthma, and discomfort to people with heart disease, children, and older adults.</p>
+                            <p>Diseases: Respiratory diseases, heart diseases.</p>
+                            <p>Precautions: Sensitive people should reduce prolonged or heavy outdoor exertion.</p>
+                            <p>Additional Information: Unhealthy for sensitive groups, but the general public may remain unaffected.</p>
+                        </div>
+                    </div>
+                {% elif z == 'POOR' %}
+                    <div class="poor">
+                        <h2>POOR</h2>
+                        <img src="{{ url_for('static', filename='poor.jpeg') }}" alt="Poor">
+                        <div class="detail">
+                            <p>Symptoms: Breathing discomfort to most people on prolonged exposure.</p>
+                            <p>Diseases: Respiratory diseases, heart diseases.</p>
+                            <p>Precautions: Everyone should reduce prolonged or heavy exertion. People with respiratory or heart diseases, children, and older adults should avoid prolonged outdoor exertion.</p>
+                            <p>Additional Information: Prolonged exposure can lead to severe health impacts, particularly for sensitive groups.</p>
+                        </div>
+                    </div>
+                {% elif z == 'VERY POOR' %}
+                    <div class="very_poor">
+                        <h2>VERY POOR</h2>
+                        <img src="{{ url_for('static', filename='max.jpg') }}" alt="Very Poor">
+                        <div class="detail">
+                            <p>Symptoms: Respiratory illness to the people on prolonged exposure.</p>
+                            <p>Diseases: Respiratory diseases, heart diseases.</p>
+                            <p>Precautions: Everyone should avoid outdoor exertion. People with respiratory or heart diseases, children, and older adults should remain indoors and keep activity levels low.</p>
+                            <p>Additional Information: Health warnings of emergency conditions. The entire population is more likely to be affected.</p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="severe">
+                        <h2>SEVERE</h2>
+                        <img src="{{ url_for('static', filename='severe.jpeg') }}" alt="Severe">
+                        <div class="detail">
+                            <p>Symptoms: Respiratory effects even on healthy people, serious health impacts on people with lung/heart disease.</p>
+                            <p>Diseases: Respiratory diseases, heart diseases.</p>
+                            <p>Precautions: Everyone should avoid all outdoor exertion. People with respiratory or heart diseases, children, and older adults should remain indoors and keep activity levels low.</p>
+                            <p>Additional Information: Health alert: everyone may experience more serious health effects.</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <a href="{{url_for('predict')}}" class="button">Make Another Prediction</a>
+        </div>
+    </main>
+</body>
+</html>
